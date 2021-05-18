@@ -32,7 +32,9 @@ namespace BookStoreMvcCoreWebApp
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Hello World!");
+                    //  await context.Response.WriteAsync("Hello World!");
+                    //await context.Response.WriteAsync(env.EnvironmentName);
+                    endpoints.MapDefaultControllerRoute();
                 });
             });
         }
