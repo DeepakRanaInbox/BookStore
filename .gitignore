@@ -5,3 +5,4 @@
 /.vs
 /BookStoreMvcCoreWebApp/.vs/BookStoreMvcCoreWebApp/v16
 /BookStoreMvcCoreWebApp/BookStoreMvcCoreWebApp/obj
+/BookStoreMvcCoreWebApp/BookStoreMvcCoreWebApp/wwwroot/lib
