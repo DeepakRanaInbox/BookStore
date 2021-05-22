@@ -21,7 +21,7 @@ namespace BookStoreMvcCoreWebApp.Controllers
             return View(MyBook_Repository.GetAllBooks());
         }
 
-        public IActionResult GetBookByID(int id)
+        public IActionResult GetBookDetails(int id)
         {
             return View(MyBook_Repository.GetBookByID(id));
         }

@@ -1,33 +1,95 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+ 
+
+     Layout="_Layout";
 }
 
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1>Welcome to Book Store</h1>
+        <p class="lead text-muted">
+            you agree to the storing of cookies on your device to enhance site navigation, analyze site usage, and assist in our marketing efforts.
+        </p>
+        <a class="btn btn-primary">Search Books</a>
+    </div>
+</section>
 
-<html>
-<head>
-    <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/css/MyStyle.css" rel="stylesheet" />
-</head>
-<body class="container">
+<div class="py-5 bg-light" >
+    <div class="container">
+        <h3>Top Books</h3>
+        <div class="row">
 
+            <div class="col-md-4">
 
-    <img class="logo" src="~/images/logo.jpg" />
-    <img class="logo" src="~/MyStaticFiles/Lamb.jpg" />
-    <h1 class="h1">Welcome To Book Store</h1>
+                <div class="card mb-4 shadow-sm">
+                    <img src="https://cdn.elearningindustry.com/wp-content/uploads/2016/05/top-10-books-every-college-student-read-1024x640.jpeg" />
+                    <div class="card-body">
+                        <p class="card-text">
+                            This Section will be for short discription of book.This Section will be for short discription of book.
 
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-outline-secondary">View Details</a>
+                            </div>
+                            <small class="text-muted">Auther Name</small>
+                        </div>
+                    </div>
+                </div>
 
+            </div>
+            <div class="col-md-4">
 
-</body>
-<script src="~/lib/jquery/jquery.js"></script>
+                <div class="card mb-4 shadow-sm">
+                    <img src="https://cdn.elearningindustry.com/wp-content/uploads/2016/05/top-10-books-every-college-student-read-1024x640.jpeg" />
+                    <div class="card-body">
+                        <p class="card-text">
+                            This Section will be for short discription of book.This Section will be for short discription of book.
+
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-outline-secondary">View Details</a>
+                            </div>
+                            <small class="text-muted">Auther Name</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+
+                <div class="card mb-4 shadow-sm">
+                    <img src="https://cdn.elearningindustry.com/wp-content/uploads/2016/05/top-10-books-every-college-student-read-1024x640.jpeg" />
+                    <div class="card-body">
+                        <p class="card-text">
+                            This Section will be for short discription of book.This Section will be for short discription of book.
+
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-outline-secondary">View Details</a>
+                            </div>
+                            <small class="text-muted">Auther Name</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+ 
+
+@section ContentPageScript{
 
 <script>
 
     $(document).ready(function () {
-
-        alert("Page Loaded..");
+        alert("Content Page Loaded...");
     });
 
 </script>
-</html>
 
+}
