@@ -1,4 +1,5 @@
-﻿using BookStoreMvcCoreWebApp.Repository;
+﻿using BookStoreMvcCoreWebApp.Models;
+using BookStoreMvcCoreWebApp.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace BookStoreMvcCoreWebApp.Controllers
             return View(MyBook_Repository.GetAllBooks());
         }
 
+        [Route("Book-Details/{id}",Name ="BookDetail")]
         public IActionResult GetBookDetails(int id)
         {
             return View(MyBook_Repository.GetBookByID(id));
@@ -29,6 +31,19 @@ namespace BookStoreMvcCoreWebApp.Controllers
         public IActionResult SearchBooks(string title,string author)
         {
             return View(MyBook_Repository.SearchBooks(title,author));
+        }
+
+        public IActionResult AddBook()
+        {
+            Book_Model MyModel = new Book_Model();
+
+            return View(MyModel);
+        }
+
+        [HttpPost]
+        public IActionResult AddBook(Book_Model MyModel)
+        {
+            return RedirectToAction("Index");
         }
     }
 }

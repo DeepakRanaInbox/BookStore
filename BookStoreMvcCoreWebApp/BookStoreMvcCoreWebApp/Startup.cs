@@ -44,8 +44,13 @@ namespace BookStoreMvcCoreWebApp
         
                     //  await context.Response.WriteAsync("Hello World!");
                     //await context.Response.WriteAsync(env.EnvironmentName);
-                    endpoints.MapDefaultControllerRoute();
-          
+                    //endpoints.MapDefaultControllerRoute();
+
+                endpoints.MapControllerRoute(
+                    name:"Default",
+                    pattern:"{controller=Home}/{action=Index}/{id?}"
+                    );
+
             });
         }
     }
