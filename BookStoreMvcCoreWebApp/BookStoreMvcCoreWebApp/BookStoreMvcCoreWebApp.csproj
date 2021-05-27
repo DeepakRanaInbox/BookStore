@@ -14,6 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\BlobStorage\images\" />
+    <Folder Include="wwwroot\BlobStorage\Book\Cover\" />
+    <Folder Include="wwwroot\BlobStorage\Book\Gallery\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 

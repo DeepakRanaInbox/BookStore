@@ -4,14 +4,16 @@ using BookStoreMvcCoreWebApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookStoreMvcCoreWebApp.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    partial class BookStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210527035825_addnewtablegallery")]
+    partial class addnewtablegallery
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,9 +82,6 @@ namespace BookStoreMvcCoreWebApp.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("author")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("bookpdfurl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("category")

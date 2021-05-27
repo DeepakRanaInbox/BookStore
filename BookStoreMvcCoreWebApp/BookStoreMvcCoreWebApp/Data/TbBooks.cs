@@ -11,6 +11,7 @@ namespace BookStoreMvcCoreWebApp.Data
 
         public string title { get; set; }
 
+        public ICollection<BookGallery> bookGallery { get; set; }
         public string author { get; set; }
 
         public string discription { get; set; }
@@ -22,6 +23,9 @@ namespace BookStoreMvcCoreWebApp.Data
 
         public string language { get; set; }
 
+        public int MstLanguagesID { get; set; }
+         
+        public string bookpdfurl { get; set; }
         public DateTime? CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
     }

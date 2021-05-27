@@ -1,4 +1,6 @@
-﻿using BookStoreMvcCoreWebApp.Models;
+﻿using BookStoreMvcCoreWebApp.Data;
+using BookStoreMvcCoreWebApp.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +10,80 @@ namespace BookStoreMvcCoreWebApp.Repository
 {
     public class Book_Repository
     {
-        public List<Book_Model> GetAllBooks()
+        private BookStoreDbContext MyContext = null;
+        public Book_Repository(BookStoreDbContext _Context)
         {
-            return DataSource();
+            MyContext = _Context;
         }
 
-        public  Book_Model GetBookByID(int id)
+
+        public async Task<int> CreatedEntity(Book_Model MyModel)
         {
-            return DataSource().Where(var => var.ID == id).FirstOrDefault();
+            TbBooks MyEntity = new TbBooks()
+            {
+                title = MyModel.title,
+                author = MyModel.author,
+                discription = MyModel.discription,
+                imagePath = MyModel.imagePath,
+                language = MyModel.language,
+                 MstLanguagesID=MyModel.LanguageID,
+                totalPages = MyModel.totalPages,
+                bookpdfurl = MyModel.bookpdfurl,
+            };
+
+            MyEntity.bookGallery = new List<BookGallery>();
+
+            foreach (GalleryImagesModel Item in MyModel.Gallery)
+            {
+                MyEntity.bookGallery.Add(new BookGallery
+                {
+                    //BookID = MyEntity.ID,
+                    Name = Item.Name,
+                    Url = Item.Url
+                });
+            }
+
+            await MyContext.TbBooks.AddAsync(MyEntity);
+            await MyContext.SaveChangesAsync();
+
+            return MyEntity.ID;
+        }
+
+        public async Task<List<Book_Model>> GetAllBooks()
+        {
+          List<Book_Model> MyModel = await  MyContext.TbBooks.Select(item=> new Book_Model {
+              ID=(int)item.ID,
+              title = item.title,
+              author = item.author,
+              language = item.language,
+              imagePath = item.imagePath,
+              totalPages = item.totalPages,
+              discription = item.discription,
+
+          }).ToListAsync();
+
+            return MyModel;
+        }
+
+        public  async Task<Book_Model> GetBookByID(int id)
+        {
+
+
+
+            Book_Model MyModel = await MyContext.TbBooks.Select(item => new Book_Model
+            {
+                ID = (int)item.ID,
+                title = item.title,
+                author = item.author,
+                language = item.language,
+                imagePath = item.imagePath,
+                totalPages = item.totalPages,
+                discription = item.discription,
+                bookpdfurl = item.bookpdfurl,
+                Gallery = item.bookGallery.Select(var => new GalleryImagesModel() { Name = var.Name, Url = var.Url }).ToList()
+            }).Where(var=> var.ID==id).FirstOrDefaultAsync();
+
+            return MyModel;
         }
 
         public List<Book_Model> SearchBooks(string title,string author)
@@ -23,6 +91,21 @@ namespace BookStoreMvcCoreWebApp.Repository
             return DataSource().Where(var => var.title.Contains(title) && var.author.Contains(author)).ToList();
         }
 
+        public List<MasterData> GetMasterData()
+        {
+            List<MasterData> MyData = new List<MasterData>();
+
+            MyData = new List<MasterData>()
+            {
+                  new MasterData {ID=1,vName="C#"},
+                  new MasterData {ID=2,vName="SQL"},
+                  new MasterData {ID=3,vName="MVC"},
+  
+            };
+
+            return MyData;
+
+        }
         private List<Book_Model> DataSource()
         {
             List<Book_Model> MyData = new List<Book_Model>();

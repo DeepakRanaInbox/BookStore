@@ -16,6 +16,12 @@ namespace BookStoreMvcCoreWebApp.Data
 
         public DbSet<TbBooks> TbBooks { get; set; }
 
+        public DbSet<MstLanguages> MstLanguages { get; set; }
+
+        public DbSet<BookGallery> BookGallery { get; set; }
+
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder OptionBuilder)
         {
             OptionBuilder.UseSqlServer("server=DESKTOP-G2A16VT\\SQLEXPRESS;database=BookStoreDB;Integrated Security=True;");

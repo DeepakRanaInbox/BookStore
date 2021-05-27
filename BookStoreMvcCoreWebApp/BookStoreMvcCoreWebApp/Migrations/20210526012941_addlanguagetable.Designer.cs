@@ -4,46 +4,22 @@ using BookStoreMvcCoreWebApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookStoreMvcCoreWebApp.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    partial class BookStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210526012941_addlanguagetable")]
+    partial class addlanguagetable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("BookStoreMvcCoreWebApp.Data.BookGallery", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BookID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("BooksID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Url")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("BooksID");
-
-                    b.ToTable("BookGallery");
-                });
 
             modelBuilder.Entity("BookStoreMvcCoreWebApp.Data.MstLanguages", b =>
                 {
@@ -73,16 +49,13 @@ namespace BookStoreMvcCoreWebApp.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("MstLanguagesID")
+                    b.Property<int?>("MstLanguagesID")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("author")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("bookpdfurl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("category")
@@ -110,32 +83,16 @@ namespace BookStoreMvcCoreWebApp.Migrations
                     b.ToTable("TbBooks");
                 });
 
-            modelBuilder.Entity("BookStoreMvcCoreWebApp.Data.BookGallery", b =>
-                {
-                    b.HasOne("BookStoreMvcCoreWebApp.Data.TbBooks", "Books")
-                        .WithMany("bookGallery")
-                        .HasForeignKey("BooksID");
-
-                    b.Navigation("Books");
-                });
-
             modelBuilder.Entity("BookStoreMvcCoreWebApp.Data.TbBooks", b =>
                 {
                     b.HasOne("BookStoreMvcCoreWebApp.Data.MstLanguages", null)
                         .WithMany("TbBooks")
-                        .HasForeignKey("MstLanguagesID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MstLanguagesID");
                 });
 
             modelBuilder.Entity("BookStoreMvcCoreWebApp.Data.MstLanguages", b =>
                 {
                     b.Navigation("TbBooks");
-                });
-
-            modelBuilder.Entity("BookStoreMvcCoreWebApp.Data.TbBooks", b =>
-                {
-                    b.Navigation("bookGallery");
                 });
 #pragma warning restore 612, 618
         }

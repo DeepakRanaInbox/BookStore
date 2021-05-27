@@ -6,30 +6,110 @@
 
 <div class="container">
     <h3 class="display-4">Add New Book</h3>
+    
+    <div class="d-flex justify-content-center" >
+        <div class="spinner-border" role="status" id="myLoader"  style="display:none;">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
 
-    <form method="post" asp-action="AddBook" asp-controller="Book">
+    <form method="post" enctype="multipart/form-data" asp-action="AddBook" asp-controller="Book"
+          data-ajax="true"
+          data-ajax-complete="myComplete"
+          data-ajax-success="mySuccess"
+          data-ajax-failure="myFailure"
+          data-ajax-loading="#myLoader">
+
+
+        <div asp-validation-summary="All" class="text-danger">
+
+        </div>
 
         <div class="form-group">
             <label asp-for="title"></label>
             <input asp-for="title" class="form-control" />
+            <span asp-validation-for="title" class="text-danger"></span>
+
         </div>
 
         <div class="form-group">
             <label asp-for="author"></label>
             <input asp-for="author" class="form-control" />
+            <span asp-validation-for="title" class="text-danger"></span>
         </div>
+
+        <div class="form-group">
+            <label asp-for="LanguageID"></label>
+            <select asp-for="LanguageID" class="form-control" asp-items="ViewBag.MyLanguageList">
+                <option> --Select Language-- </option>
+            </select>
+            <span asp-validation-for="LanguageID" class="text-danger"></span>
+        </div>
+
         <div class="form-group">
             <label asp-for="totalPages"></label>
             <input type="number" asp-for="totalPages" class="form-control" />
+            <span asp-validation-for="title" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="discription"></label>
 
+            <label asp-for="CoverPhoto" class="form-label"> </label>
+            <input class="form-control" asp-for="CoverPhoto">
+            <span asp-validation-for="CoverPhoto" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+
+            <label asp-for="galleryimages" class="form-label"> </label>
+            <input class="form-control" asp-for="galleryimages">
+            <span asp-validation-for="galleryimages" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+
+            <label asp-for="bookpdffile" class="form-label"> </label>
+            <input class="form-control" asp-for="bookpdffile">
+            <span asp-validation-for="bookpdffile" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="discription"></label>
             <textarea asp-for="discription" class="form-control"></textarea>
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Submit" />
         </div>
+
+
+
     </form>
 </div>
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+<script src="~/lib/validation/jquery.validate.unobtrusive.js"></script>
+<script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+
+<script>
+    //myComplete,mySuccess,myFailure
+    function myComplete(data) {
+
+        alert("i am from myComplete");
+        console.log("myComplete is Executed");
+    }
+
+    function mySuccess(data) {
+        alert("i am from mySuccess");
+        console.log("mySuccess is Executed");
+    }
+
+    function myFailure(data) {
+
+        alert("i am from myFailure");
+        console.log("myFailure is Executed");
+    }
+
+</script>
+<script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
+@*
+    <script src="../../Scripts/jquery-3.4.1.min.js"></script>
+    <script src="../../Scripts/bootstrap.min.js"></script>
+    <script src="../../Scripts/jquery.validate.min.js"></script>
+    <script src="../../Scripts/jquery.validate.unobtrusive.min.js"></script>*@

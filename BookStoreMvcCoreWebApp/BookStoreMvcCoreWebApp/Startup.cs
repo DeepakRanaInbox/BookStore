@@ -1,4 +1,5 @@
 using BookStoreMvcCoreWebApp.Data;
+using BookStoreMvcCoreWebApp.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -21,7 +22,16 @@ namespace BookStoreMvcCoreWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BookStoreDbContext>(options => options.UseSqlServer());
+           
             services.AddControllersWithViews();
+
+            services.AddScoped<Book_Repository, Book_Repository>();
+            services.AddScoped<Language_Repository, Language_Repository>();
+
+            services.AddRazorPages().AddViewOptions(options=> {
+
+                options.HtmlHelperOptions.ClientValidationEnabled = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
